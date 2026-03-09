@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limitless Real Estate — Luxury Home Consultation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #1a1a1a;
+      --bg-card: rgba(22, 22, 22, 0.95);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.65);
+      --text-muted: rgba(255, 255, 255, 0.45);
+      --accent-green: #6b8f6b;
+      --accent-green-hover: #7da37d;
+      --border-light: rgba(255, 255, 255, 0.2);
+      --border-focus: rgba(255, 255, 255, 0.5);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Nunito Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ========== MAIN LAYOUT ========== */
+    .landing {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ========== LEFT COLUMN ========== */
+    .landing__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 30px 48px 20px;
+      background: var(--bg-card);
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .landing__inner {
+      max-width: 520px;
+      width: 100%;
+    }
+
+    .landing__logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .landing__logo img {
+      max-height: 120px;
+      width: auto;
+      opacity: 0.92;
+    }
+
+    .landing__headline {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.2;
+      text-align: center;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .landing__subtext {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    /* ========== SIGNATURE LINE ========== */
+    .landing__signature {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .signature-contact a {
+      color: var(--accent-green);
+      text-decoration: none;
+    }
+
+    .signature-contact a:hover {
+      color: var(--accent-green-hover);
+    }
+
+    /* ========== COMPLIANCE LOGOS ========== */
+    .compliance-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+      padding-bottom: 10px;
+    }
+
+    .compliance-logos img {
+      height: 40px;
+      width: auto;
+      opacity: 0.55;
+      filter: brightness(0) invert(1);
+    }
+
+    /* ========== FORM ========== */
+    .form-container { width: 100%; }
+
+    .form-field {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 15px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      outline: none;
+    }
+
+    .form-field input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-field input:focus {
+      border-color: var(--border-focus);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .form-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 18px;
+      margin-bottom: 20px;
+    }
+
+    .form-checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent-green);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .form-checkbox label {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .form-checkbox label a {
+      color: var(--accent-green);
+      text-decoration: none;
+    }
+
+    .form-checkbox label a:hover {
+      color: var(--accent-green-hover);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent-green);
+      border: none;
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.15s ease;
+    }
+
+    .form-submit:hover {
+      background: var(--accent-green-hover);
+    }
+
+    .form-submit:active {
+      transform: scale(0.985);
+    }
+
+    .form-disclaimer {
+      margin-top: 24px;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ========== RIGHT COLUMN — VERTICAL SLIDER ========== */
+    .landing__slider {
+      position: relative;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .slider-track {
+      display: flex;
+      flex-direction: column;
+      animation: slideVertical 40s linear infinite;
+    }
+
+    .slide {
+      width: 100%;
+      height: 50vh;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes slideVertical {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        /* Move by exactly 5 slides worth (the original set) */
+        transform: translateY(calc(-50vh * 5));
+      }
+    }
+
+    /* Soft fade edges top and bottom */
+    .landing__slider::before,
+    .landing__slider::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .landing__slider::before {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(26,26,26,0.4), transparent);
+    }
+
+    .landing__slider::after {
+      bottom: 0;
+      background: linear-gradient(to top, rgba(26,26,26,0.4), transparent);
+    }
+
+    /* ========== MOBILE ========== */
+    @media (max-width: 900px) {
+      .landing {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+        overflow: visible;
+      }
+
+      /* Slider goes horizontal on mobile */
+      .landing__slider {
+        min-height: unset;
+        height: 260px;
+        order: -1;
+      }
+
+      .landing__slider::before,
+      .landing__slider::after {
+        display: none;
+      }
+
+      /* Horizontal fade edges instead */
+      .landing__slider {
+        -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+        mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+      }
+
+      .slider-track {
+        flex-direction: row;
+        animation: slideHorizontal 35s linear infinite;
+      }
+
+      .slide {
+        width: 85vw;
+        height: 260px;
+        flex-shrink: 0;
+      }
+
+      @keyframes slideHorizontal {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-85vw * 5));
+        }
+      }
+
+      .landing__content {
+        padding: 40px 24px 50px;
+        height: auto;
+      }
+
+      .landing__headline {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .landing__content {
+        padding: 32px 18px 40px;
+      }
+
+      .landing__headline {
+        font-size: 24px;
+      }
+
+      .form-field input {
+        padding: 13px 14px;
+        font-size: 14px;
+      }
+
+      .landing__slider {
+        height: 220px;
+      }
+
+      .slide {
+        width: 80vw;
+        height: 220px;
+      }
+
+      @keyframes slideHorizontal {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-80vw * 5));
+        }
+      }
+    }
+
+    /* ==============================================
+       GHL FORM IFRAME STYLING
+    ============================================== */
+    .ghl-form-wrapper {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .ghl-form-wrapper iframe {
+      width: 100%;
+      min-height: 550px;
+      border: none;
+      border-radius: 8px;
+      background: #161616 !important;
+      background-color: #161616 !important;
+    }
+
+    /* Force dark on ALL elements inside the form container */
+    .form-container div,
+    .form-container [style],
+    .ghl-form-wrapper div,
+    .ghl-form-wrapper [style] {
+      background: #161616 !important;
+      background-color: #161616 !important;
+      border-color: transparent !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="landing">
+
+    <!-- LEFT COLUMN -->
+    <div class="landing__content">
+      <div class="landing__inner">
+
+        <div class="landing__logo">
+          <img src="img/logo.png" alt="Limitless Real Estate" />
+        </div>
+
+        <div class="landing__signature">
+          Braden Johnson Realtor | Team Lead BJR Group – Limitless Real Estate<br />
+          <span class="signature-contact">
+            &#9742; <a href="tel:4802282749">480-228-2749</a> &nbsp;&#127760; <a href="https://bradenazhomes.com" target="_blank">bradenazhomes.com</a>
+          </span>
+        </div>
+
+        <h1 class="landing__headline">Book Your Free Luxury Home Consultation</h1>
+        <p class="landing__subtext">Enter your details for exclusive information on this listing</p>
+
+        <!-- GHL FORM EMBED -->
+        <div class="form-container">
+          <div class="ghl-form-wrapper">
+            <iframe
+                src="https://api.leadconnectorhq.com/widget/form/6JWWOW9y1sDQ2mpIOtjp"
+                style="width:100%;height:100%;border:none;border-radius:3px"
+                id="inline-6JWWOW9y1sDQ2mpIOtjp" 
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Lead form"
+                data-height="619"
+                data-layout-iframe-id="inline-6JWWOW9y1sDQ2mpIOtjp"
+                data-form-id="6JWWOW9y1sDQ2mpIOtjp"
+                title="Lead form"
+                    >
+            </iframe>
+          </div>
+        </div>
+
+        <p class="form-disclaimer">
+          By submitting this form, I agree to be contacted by Limitless Real Estate via call, email, and text. To opt-out, you can reply 'STOP' at any time or click the unsubscribe link in the emails. Message and data rates may apply. Message frequency varies.
+        </p>
+
+        <div class="compliance-logos">
+          <img src="img/compliance-logos.png" alt="Equal Housing Opportunity | Realtor" />
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN — Auto-scrolling image slider -->
+    <div class="landing__slider">
+      <div class="slider-track">
+        <!-- Original 5 slides -->
+        <div class="slide"><img src="img/slide1.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide2.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide3.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide4.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide5.png" alt="Luxury property" /></div>
+        <!-- Duplicated for seamless loop -->
+        <div class="slide"><img src="img/slide1.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide2.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide3.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide4.png" alt="Luxury property" /></div>
+        <div class="slide"><img src="img/slide5.png" alt="Luxury property" /></div>
+      </div>
+    </div>
+
+  </div>
+
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+</body>
+</html>
