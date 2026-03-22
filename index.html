@@ -485,6 +485,7 @@
   </div>
 
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
 <!-- Meta Pixel Code -->
 <script>
   !function(f,b,e,v,n,t,s)
@@ -497,10 +498,32 @@
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1191552762262698');
   fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
+</script>
+<noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1191552762262698&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- GHL Form Submission → Meta Pixel Lead Event -->
+<script>
+  window.addEventListener('message', function(event) {
+    // GHL fires a postMessage when a form is submitted
+    if (
+      event.data &&
+      (
+        event.data.type === 'form_submitted' ||
+        event.data.event === 'form_submitted' ||
+        (typeof event.data === 'string' && event.data.includes('form_submitted'))
+      )
+    ) {
+      // Fire Meta Lead event
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead');
+        console.log('Meta Lead event fired via GHL postMessage');
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
